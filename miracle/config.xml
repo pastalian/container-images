@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<image schemaversion="7.6" name="miraclelinux">
+    <description type="system">
+        <author>pastalian</author>
+        <contact>pastalian46@gmail.com</contact>
+        <specification>MIRACLE LINUX</specification>
+    </description>
+    <preferences>
+        <version>0.0.1</version>
+        <packagemanager>dnf4</packagemanager>
+        <rpm-check-signatures>true</rpm-check-signatures>
+        <rpm-excludedocs>true</rpm-excludedocs>
+        <keytable>us</keytable>
+        <timezone>UTC</timezone>
+        <locale>en_US</locale>
+    </preferences>
+    <profiles>
+        <profile name="8" description="8-latest"/>
+        <profile name="8.4" description="8.4-released"/>
+        <profile name="8.6" description="8.6-released"/>
+        <profile name="8.8" description="8.8-released"/>
+        <profile name="9" description="9-latest"/>
+        <profile name="9.0" description="9.0-released"/>
+        <profile name="9.2" description="9.2-released"/>
+    </profiles>
+    <preferences profiles="8">
+        <release-version>8-latest</release-version>
+        <type image="oci">
+            <containerconfig name="miraclelinux" tag="8"/>
+        </type>
+    </preferences>
+    <preferences profiles="8.4">
+        <release-version>8.4-released</release-version>
+        <type image="oci">
+            <containerconfig name="miraclelinux" tag="8.4"/>
+        </type>
+    </preferences>
+    <preferences profiles="8.6">
+        <release-version>8.6-released</release-version>
+        <type image="oci">
+            <containerconfig name="miraclelinux" tag="8.6"/>
+        </type>
+    </preferences>
+    <preferences profiles="8.8">
+        <release-version>8.8-released</release-version>
+        <type image="oci">
+            <containerconfig name="miraclelinux" tag="8.8"/>
+        </type>
+    </preferences>
+    <preferences profiles="9">
+        <release-version>9-latest</release-version>
+        <type image="oci">
+            <containerconfig name="miraclelinux" tag="9"/>
+        </type>
+    </preferences>
+    <preferences profiles="9.0">
+        <release-version>9.0-released</release-version>
+        <type image="oci">
+            <containerconfig name="miraclelinux" tag="9.0"/>
+        </type>
+    </preferences>
+    <preferences profiles="9.2">
+        <release-version>9.2-released</release-version>
+        <type image="oci">
+            <containerconfig name="miraclelinux" tag="9.2"/>
+        </type>
+    </preferences>
+    <repository type="rpm-md" alias="baseos" sourcetype="mirrorlist">
+        <source path="https://repo.dist.miraclelinux.net/miraclelinux/mirrorlist/$releasever/$basearch/baseos"/>
+    </repository>
+    <repository type="rpm-md" alias="appstream" sourcetype="mirrorlist">
+        <source path="https://repo.dist.miraclelinux.net/miraclelinux/mirrorlist/$releasever/$basearch/appstream"/>
+    </repository>
+    <packages type="bootstrap">
+        <ignore name="glibc-all-langpacks"/>
+        <package name="coreutils-single"/>
+        <package name="filesystem"/>
+        <package name="glibc-minimal-langpack"/>
+        <package name="libcurl-minimal"/>
+    </packages>
+    <packages type="image">
+        <ignore name="glibc-all-langpacks"/>
+        <package name="miraclelinux-repos"/>
+        <package name="rootfiles"/>
+        <package name="tar"/>
+        <package name="vim-minimal"/>
+        <package name="yum"/>
+    </packages>
+</image>
