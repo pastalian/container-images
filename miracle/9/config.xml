@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<image schemaversion="7.6" name="almalinux">
+<image schemaversion="7.6" name="miraclelinux">
     <description type="system">
         <author>pastalian</author>
         <contact>pastalian46@gmail.com</contact>
-        <specification>AlmaLinux</specification>
+        <specification>MIRACLE LINUX 9</specification>
     </description>
     <preferences>
         <version>0.0.1</version>
@@ -16,37 +16,46 @@
         <locale>en_US</locale>
     </preferences>
     <profiles>
-        <profile name="8" description="8-latest"/>
-        <profile name="9" description="9-latest"/>
+        <profile name="9.0" description="9.0-released"/>
+        <profile name="9.2" description="9.2-released"/>
+        <profile name="9-latest" description="9-latest"/>
     </profiles>
-    <preferences profiles="8">
-        <release-version>8</release-version>
+    <preferences profiles="9.0">
+        <release-version>9.0-released</release-version>
         <type image="oci">
-            <containerconfig name="almalinux" tag="8"/>
+            <containerconfig name="miraclelinux" tag="9.0"/>
         </type>
     </preferences>
-    <preferences profiles="9">
-        <release-version>9</release-version>
+    <preferences profiles="9.2">
+        <release-version>9.2-released</release-version>
         <type image="oci">
-            <containerconfig name="almalinux" tag="9"/>
+            <containerconfig name="miraclelinux" tag="9.2"/>
+        </type>
+    </preferences>
+    <preferences profiles="9-latest">
+        <release-version>9-latest</release-version>
+        <type image="oci">
+            <containerconfig name="miraclelinux" tag="9-latest"/>
         </type>
     </preferences>
     <repository type="rpm-md" alias="baseos" sourcetype="mirrorlist">
-        <source path="https://mirrors.almalinux.org/mirrorlist/$releasever/baseos"/>
+        <source path="https://repo.dist.miraclelinux.net/miraclelinux/mirrorlist/$releasever/$basearch/baseos"/>
     </repository>
     <repository type="rpm-md" alias="appstream" sourcetype="mirrorlist">
-        <source path="https://mirrors.almalinux.org/mirrorlist/$releasever/appstream"/>
+        <source path="https://repo.dist.miraclelinux.net/miraclelinux/mirrorlist/$releasever/$basearch/appstream"/>
     </repository>
     <packages type="bootstrap">
         <ignore name="glibc-all-langpacks"/>
         <package name="basesystem"/>
         <package name="coreutils-single"/>
+        <package name="curl-minimal"/>
         <package name="filesystem"/>
         <package name="glibc-minimal-langpack"/>
         <package name="libcurl-minimal"/>
     </packages>
     <packages type="image">
         <ignore name="glibc-all-langpacks"/>
+        <package name="miraclelinux-repos"/>
         <package name="rootfiles"/>
         <package name="tar"/>
         <package name="vim-minimal"/>

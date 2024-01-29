@@ -4,7 +4,7 @@
     <description type="system">
         <author>pastalian</author>
         <contact>pastalian46@gmail.com</contact>
-        <specification>MIRACLE LINUX</specification>
+        <specification>MIRACLE LINUX 8</specification>
     </description>
     <preferences>
         <version>0.0.1</version>
@@ -16,20 +16,11 @@
         <locale>en_US</locale>
     </preferences>
     <profiles>
-        <profile name="8" description="8-latest"/>
         <profile name="8.4" description="8.4-released"/>
         <profile name="8.6" description="8.6-released"/>
         <profile name="8.8" description="8.8-released"/>
-        <profile name="9" description="9-latest"/>
-        <profile name="9.0" description="9.0-released"/>
-        <profile name="9.2" description="9.2-released"/>
+        <profile name="8-latest" description="8-latest"/>
     </profiles>
-    <preferences profiles="8">
-        <release-version>8-latest</release-version>
-        <type image="oci">
-            <containerconfig name="miraclelinux" tag="8"/>
-        </type>
-    </preferences>
     <preferences profiles="8.4">
         <release-version>8.4-released</release-version>
         <type image="oci">
@@ -48,22 +39,10 @@
             <containerconfig name="miraclelinux" tag="8.8"/>
         </type>
     </preferences>
-    <preferences profiles="9">
-        <release-version>9-latest</release-version>
+    <preferences profiles="8-latest">
+        <release-version>8-latest</release-version>
         <type image="oci">
-            <containerconfig name="miraclelinux" tag="9"/>
-        </type>
-    </preferences>
-    <preferences profiles="9.0">
-        <release-version>9.0-released</release-version>
-        <type image="oci">
-            <containerconfig name="miraclelinux" tag="9.0"/>
-        </type>
-    </preferences>
-    <preferences profiles="9.2">
-        <release-version>9.2-released</release-version>
-        <type image="oci">
-            <containerconfig name="miraclelinux" tag="9.2"/>
+            <containerconfig name="miraclelinux" tag="8-latest"/>
         </type>
     </preferences>
     <repository type="rpm-md" alias="baseos" sourcetype="mirrorlist">
@@ -74,6 +53,7 @@
     </repository>
     <packages type="bootstrap">
         <ignore name="glibc-all-langpacks"/>
+        <package name="basesystem"/>
         <package name="coreutils-single"/>
         <package name="filesystem"/>
         <package name="glibc-minimal-langpack"/>
