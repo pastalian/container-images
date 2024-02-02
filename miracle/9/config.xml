@@ -7,35 +7,68 @@
         <specification>MIRACLE LINUX 9</specification>
     </description>
     <preferences>
-        <version>0.0.1</version>
+        <version>0.0.2</version>
         <packagemanager>dnf4</packagemanager>
-        <rpm-check-signatures>true</rpm-check-signatures>
+        <rpm-locale-filtering>true</rpm-locale-filtering>
         <rpm-excludedocs>true</rpm-excludedocs>
-        <keytable>us</keytable>
         <timezone>UTC</timezone>
-        <locale>en_US</locale>
     </preferences>
     <profiles>
-        <profile name="9.0" description="9.0-released"/>
-        <profile name="9.2" description="9.2-released"/>
-        <profile name="9-latest" description="9-latest"/>
+        <profile name="minimal" description="minimal packages"/>
+        <profile name="default" description="default packages"/>
+        <profile name="9.0" description="9.0-released">
+            <requires profile="default"/>
+        </profile>
+        <profile name="9.0-minimal" description="9.0-minimal">
+            <requires profile="minimal"/>
+        </profile>
+        <profile name="9.2" description="9.2-released">
+            <requires profile="default"/>
+        </profile>
+        <profile name="9.2-minimal" description="9.2-minimal">
+            <requires profile="minimal"/>
+        </profile>
+        <profile name="9-latest" description="9-latest">
+            <requires profile="default"/>
+        </profile>
+        <profile name="9-latest-minimal" description="9-latest-minimal">
+            <requires profile="minimal"/>
+        </profile>
     </profiles>
     <preferences profiles="9.0">
         <release-version>9.0-released</release-version>
         <type image="oci">
-            <containerconfig name="miraclelinux" tag="9.0"/>
+            <containerconfig name="pastalian/miraclelinux" tag="9.0"/>
+        </type>
+    </preferences>
+    <preferences profiles="9.0-minimal">
+        <release-version>9.0-released</release-version>
+        <type image="oci">
+            <containerconfig name="pastalian/miraclelinux" tag="9.0-minimal"/>
         </type>
     </preferences>
     <preferences profiles="9.2">
         <release-version>9.2-released</release-version>
         <type image="oci">
-            <containerconfig name="miraclelinux" tag="9.2"/>
+            <containerconfig name="pastalian/miraclelinux" tag="9.2"/>
+        </type>
+    </preferences>
+    <preferences profiles="9.2-minimal">
+        <release-version>9.2-released</release-version>
+        <type image="oci">
+            <containerconfig name="pastalian/miraclelinux" tag="9.2-minimal"/>
         </type>
     </preferences>
     <preferences profiles="9-latest">
         <release-version>9-latest</release-version>
         <type image="oci">
-            <containerconfig name="miraclelinux" tag="9-latest"/>
+            <containerconfig name="pastalian/miraclelinux" tag="9-latest"/>
+        </type>
+    </preferences>
+    <preferences profiles="9-latest-minimal">
+        <release-version>9-latest</release-version>
+        <type image="oci">
+            <containerconfig name="pastalian/miraclelinux" tag="9-latest-minimal"/>
         </type>
     </preferences>
     <repository type="rpm-md" alias="baseos" sourcetype="mirrorlist">
@@ -52,10 +85,13 @@
         <package name="filesystem"/>
         <package name="glibc-minimal-langpack"/>
         <package name="libcurl-minimal"/>
-    </packages>
-    <packages type="image">
-        <ignore name="glibc-all-langpacks"/>
         <package name="miraclelinux-repos"/>
+    </packages>
+    <packages type="bootstrap" profiles="minimal">
+        <package name="microdnf"/>
+    </packages>
+    <packages type="bootstrap" profiles="default">
+        <package name="dnf"/>
         <package name="rootfiles"/>
         <package name="tar"/>
         <package name="vim-minimal"/>
