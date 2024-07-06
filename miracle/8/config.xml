@@ -103,6 +103,7 @@
         <package name="glibc-minimal-langpack"/>
         <package name="libcurl-minimal"/>
         <package name="miraclelinux-repos"/>
+        <package name="redhat-release"/>
     </packages>
     <packages type="bootstrap" profiles="minimal">
         <package name="microdnf"/>
