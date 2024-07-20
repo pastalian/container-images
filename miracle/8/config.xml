@@ -43,50 +43,50 @@
     </profiles>
     <preferences profiles="8.4">
         <release-version>8.4-released</release-version>
-        <type image="oci">
+        <type image="docker">
             <containerconfig name="pastalian/miraclelinux" tag="8.4"/>
         </type>
     </preferences>
     <preferences profiles="8.4-minimal">
         <release-version>8.4-released</release-version>
-        <type image="oci">
+        <type image="docker">
             <containerconfig name="pastalian/miraclelinux" tag="8.4-minimal"/>
         </type>
     </preferences>
     <preferences profiles="8.6">
         <release-version>8.6-released</release-version>
-        <type image="oci">
+        <type image="docker">
             <containerconfig name="pastalian/miraclelinux" tag="8.6"/>
         </type>
     </preferences>
     <preferences profiles="8.6-minimal">
         <release-version>8.6-released</release-version>
-        <type image="oci">
+        <type image="docker">
             <containerconfig name="pastalian/miraclelinux" tag="8.6-minimal"/>
         </type>
     </preferences>
     <preferences profiles="8.8">
         <release-version>8.8-released</release-version>
-        <type image="oci">
+        <type image="docker">
             <containerconfig name="pastalian/miraclelinux" tag="8.8"/>
         </type>
     </preferences>
     <preferences profiles="8.8-minimal">
         <release-version>8.8-released</release-version>
-        <type image="oci">
+        <type image="docker">
             <containerconfig name="pastalian/miraclelinux" tag="8.8-minimal"/>
         </type>
     </preferences>
     <preferences profiles="8-latest">
         <release-version>8-latest</release-version>
-        <type image="oci">
-            <containerconfig name="pastalian/miraclelinux" tag="8-latest"/>
+        <type image="docker">
+            <containerconfig name="pastalian/miraclelinux" tag="8-latest" additionalnames=":8"/>
         </type>
     </preferences>
     <preferences profiles="8-latest-minimal">
         <release-version>8-latest</release-version>
-        <type image="oci">
-            <containerconfig name="pastalian/miraclelinux" tag="8-latest-minimal"/>
+        <type image="docker">
+            <containerconfig name="pastalian/miraclelinux" tag="8-latest-minimal" additionalnames=":8-minimal"/>
         </type>
     </preferences>
     <repository type="rpm-md" alias="baseos" sourcetype="mirrorlist">

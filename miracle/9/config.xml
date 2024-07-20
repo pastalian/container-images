@@ -37,38 +37,38 @@
     </profiles>
     <preferences profiles="9.0">
         <release-version>9.0-released</release-version>
-        <type image="oci">
+        <type image="docker">
             <containerconfig name="pastalian/miraclelinux" tag="9.0"/>
         </type>
     </preferences>
     <preferences profiles="9.0-minimal">
         <release-version>9.0-released</release-version>
-        <type image="oci">
+        <type image="docker">
             <containerconfig name="pastalian/miraclelinux" tag="9.0-minimal"/>
         </type>
     </preferences>
     <preferences profiles="9.2">
         <release-version>9.2-released</release-version>
-        <type image="oci">
+        <type image="docker">
             <containerconfig name="pastalian/miraclelinux" tag="9.2"/>
         </type>
     </preferences>
     <preferences profiles="9.2-minimal">
         <release-version>9.2-released</release-version>
-        <type image="oci">
+        <type image="docker">
             <containerconfig name="pastalian/miraclelinux" tag="9.2-minimal"/>
         </type>
     </preferences>
     <preferences profiles="9-latest">
         <release-version>9-latest</release-version>
-        <type image="oci">
-            <containerconfig name="pastalian/miraclelinux" tag="9-latest"/>
+        <type image="docker">
+            <containerconfig name="pastalian/miraclelinux" tag="9-latest" additionalnames=":9,:latest"/>
         </type>
     </preferences>
     <preferences profiles="9-latest-minimal">
         <release-version>9-latest</release-version>
-        <type image="oci">
-            <containerconfig name="pastalian/miraclelinux" tag="9-latest-minimal"/>
+        <type image="docker">
+            <containerconfig name="pastalian/miraclelinux" tag="9-latest-minimal" additionalnames=":9-minimal"/>
         </type>
     </preferences>
     <repository type="rpm-md" alias="baseos" sourcetype="mirrorlist">
