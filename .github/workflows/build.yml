@@ -1,0 +1,82 @@
+name: Build container images
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      major:
+        description: 'Major version'
+        required: true
+        type: choice
+        options:
+          - 9
+          - 8
+      minor:
+        description: 'Minor version'
+        required: true
+        type: choice
+        options:
+          - 10
+          - 8
+          - 6
+          - 4
+          - 2
+          - 0
+
+jobs:
+  build-latest:
+    name: Build latest image
+    if: ${{ github.event_name == 'push' }}
+    runs-on: ubuntu-latest
+    container:
+      image: fedora:39
+      options: --privileged
+    strategy:
+      matrix:
+        version: [8, 9]
+        variant: ['', -minimal]
+    steps:
+      - name: Install KIWI
+        run: |
+          dnf -y install fuse-overlayfs kiwi kiwi-systemdeps-containers
+
+      - uses: actions/checkout@v4
+
+      - name: Build ML ${{ matrix.version }}-latest
+        run: |
+          kiwi-ng --profile ${{ matrix.version }}-latest${{ matrix.variant }} system build --description miracle/${{ matrix.version }} --target-dir /build
+
+      - name: Push to Docker Hub
+        run: |
+          find /build -name '*.docker.tar.xz' -exec buildah pull docker-archive:{} \;
+          buildah images -f reference=pastalian/miraclelinux --format "{{ .Name }}:{{.Tag}}" | \
+            xargs -I{} buildah push --creds ${{ secrets.DOCKERHUB_USERNAME }}:${{ secrets.DOCKERHUB_TOKEN }} {}
+
+  build-versioned:
+    name: Build versioned image
+    if: ${{ github.event_name == 'workflow_dispatch' }}
+    runs-on: ubuntu-latest
+    container:
+      image: fedora:39
+      options: --privileged
+    strategy:
+      matrix:
+        variant: ['', -minimal]
+    steps:
+      - name: Install KIWI
+        run: |
+          dnf -y install fuse-overlayfs kiwi kiwi-systemdeps-containers
+
+      - uses: actions/checkout@v4
+
+      - name: Build ML ${{ inputs.major }}.${{ inputs.minor }}
+        run: |
+          kiwi-ng --profile ${{ inputs.major }}.${{ inputs.minor }}${{ matrix.variant }} system build --description miracle/${{ inputs.major }} --target-dir /build
+
+      - name: Push to Docker Hub
+        run: |
+          find /build -name '*.docker.tar.xz' -exec buildah pull docker-archive:{} \;
+          buildah images -f reference=pastalian/miraclelinux --format "{{ .Name }}:{{.Tag}}" | \
+            xargs -I{} buildah push --creds ${{ secrets.DOCKERHUB_USERNAME }}:${{ secrets.DOCKERHUB_TOKEN }} {}
