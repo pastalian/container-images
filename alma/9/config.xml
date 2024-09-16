@@ -9,26 +9,30 @@
     <preferences>
         <version>0.0.1</version>
         <packagemanager>dnf4</packagemanager>
-        <rpm-check-signatures>true</rpm-check-signatures>
+        <rpm-locale-filtering>true</rpm-locale-filtering>
         <rpm-excludedocs>true</rpm-excludedocs>
-        <keytable>us</keytable>
         <timezone>UTC</timezone>
-        <locale>en_US</locale>
     </preferences>
     <profiles>
-        <profile name="8" description="8-latest"/>
-        <profile name="9" description="9-latest"/>
+        <profile name="minimal" description="minimal packages"/>
+        <profile name="default" description="default packages"/>
+        <profile name="9" description="9-latest">
+            <requires profile="default"/>
+        </profile>
+        <profile name="9-minimal" description="9-latest-minimal">
+            <requires profile="minimal"/>
+        </profile>
     </profiles>
-    <preferences profiles="8">
-        <release-version>8</release-version>
-        <type image="oci">
-            <containerconfig name="almalinux" tag="8"/>
-        </type>
-    </preferences>
     <preferences profiles="9">
         <release-version>9</release-version>
-        <type image="oci">
-            <containerconfig name="almalinux" tag="9"/>
+        <type image="docker">
+            <containerconfig name="pastalian/almalinux" tag="9"/>
+        </type>
+    </preferences>
+    <preferences profiles="9-minimal">
+        <release-version>9</release-version>
+        <type image="docker">
+            <containerconfig name="pastalian/almalinux" tag="9-minimal"/>
         </type>
     </preferences>
     <repository type="rpm-md" alias="baseos" sourcetype="mirrorlist">
@@ -41,12 +45,16 @@
         <ignore name="glibc-all-langpacks"/>
         <package name="basesystem"/>
         <package name="coreutils-single"/>
+        <package name="curl-minimal"/>
         <package name="filesystem"/>
         <package name="glibc-minimal-langpack"/>
         <package name="libcurl-minimal"/>
     </packages>
-    <packages type="image">
-        <ignore name="glibc-all-langpacks"/>
+    <packages type="bootstrap" profiles="minimal">
+        <package name="microdnf"/>
+    </packages>
+    <packages type="bootstrap" profiles="default">
+        <package name="dnf"/>
         <package name="rootfiles"/>
         <package name="tar"/>
         <package name="vim-minimal"/>
