@@ -13,6 +13,7 @@ on:
         options:
           - 9
           - 8
+          - latest
       minor:
         description: 'Minor version'
         required: true
@@ -28,7 +29,7 @@ on:
 jobs:
   build-latest:
     name: Build latest image
-    if: ${{ github.event_name == 'push' }}
+    if: ${{ (github.event_name == 'push') || (inputs.major == 'latest') }}
     runs-on: ubuntu-latest
     container:
       image: almalinux:9
