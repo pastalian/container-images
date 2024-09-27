@@ -58,7 +58,7 @@ jobs:
 
   build-versioned:
     name: Build versioned image
-    if: ${{ github.event_name == 'workflow_dispatch' }}
+    if: ${{ (github.event_name == 'workflow_dispatch') && (inputs.major != 'latest') }}
     runs-on: ubuntu-latest
     container:
       image: almalinux:9
