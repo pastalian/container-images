@@ -7,7 +7,7 @@
         <specification>MIRACLE LINUX 8</specification>
     </description>
     <preferences>
-        <version>0.0.2</version>
+        <version>0.0.3</version>
         <packagemanager>dnf4</packagemanager>
         <rpm-locale-filtering>true</rpm-locale-filtering>
         <rpm-excludedocs>true</rpm-excludedocs>
@@ -32,6 +32,12 @@
             <requires profile="default"/>
         </profile>
         <profile name="8.8-minimal" description="8.8-minimal">
+            <requires profile="minimal"/>
+        </profile>
+        <profile name="8.10" description="8.10-released">
+            <requires profile="default"/>
+        </profile>
+        <profile name="8.10-minimal" description="8.10-minimal">
             <requires profile="minimal"/>
         </profile>
         <profile name="8-latest" description="8-latest">
@@ -75,6 +81,18 @@
         <release-version>8.8-released</release-version>
         <type image="docker">
             <containerconfig name="pastalian/miraclelinux" tag="8.8-minimal"/>
+        </type>
+    </preferences>
+    <preferences profiles="8.10">
+        <release-version>8.10-released</release-version>
+        <type image="docker">
+            <containerconfig name="pastalian/miraclelinux" tag="8.10"/>
+        </type>
+    </preferences>
+    <preferences profiles="8.10-minimal">
+        <release-version>8.10-released</release-version>
+        <type image="docker">
+            <containerconfig name="pastalian/miraclelinux" tag="8.10-minimal"/>
         </type>
     </preferences>
     <preferences profiles="8-latest">
