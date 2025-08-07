@@ -7,7 +7,7 @@
         <specification>MIRACLE LINUX 9</specification>
     </description>
     <preferences>
-        <version>0.0.3</version>
+        <version>0.0.4</version>
         <packagemanager>dnf4</packagemanager>
         <rpm-locale-filtering>true</rpm-locale-filtering>
         <rpm-excludedocs>true</rpm-excludedocs>
@@ -32,6 +32,12 @@
             <requires profile="default"/>
         </profile>
         <profile name="9.4-minimal" description="9.4-minimal">
+            <requires profile="minimal"/>
+        </profile>
+        <profile name="9.6" description="9.6-released">
+            <requires profile="default"/>
+        </profile>
+        <profile name="9.6-minimal" description="9.6-minimal">
             <requires profile="minimal"/>
         </profile>
         <profile name="9-latest" description="9-latest">
@@ -75,6 +81,18 @@
         <release-version>9.4-released</release-version>
         <type image="docker">
             <containerconfig name="pastalian/miraclelinux" tag="9.4-minimal"/>
+        </type>
+    </preferences>
+    <preferences profiles="9.6">
+        <release-version>9.6-released</release-version>
+        <type image="docker">
+            <containerconfig name="pastalian/miraclelinux" tag="9.6"/>
+        </type>
+    </preferences>
+    <preferences profiles="9.6-minimal">
+        <release-version>9.6-released</release-version>
+        <type image="docker">
+            <containerconfig name="pastalian/miraclelinux" tag="9.6-minimal"/>
         </type>
     </preferences>
     <preferences profiles="9-latest">
