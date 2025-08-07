@@ -98,13 +98,13 @@
     <preferences profiles="9-latest">
         <release-version>9-latest</release-version>
         <type image="docker">
-            <containerconfig name="pastalian/miraclelinux" tag="9-latest" additionalnames=":9,:latest"/>
+            <containerconfig name="pastalian/miraclelinux" tag="9" additionalnames=":latest"/>
         </type>
     </preferences>
     <preferences profiles="9-latest-minimal">
         <release-version>9-latest</release-version>
         <type image="docker">
-            <containerconfig name="pastalian/miraclelinux" tag="9-latest-minimal" additionalnames=":9-minimal"/>
+            <containerconfig name="pastalian/miraclelinux" tag="9-minimal"/>
         </type>
     </preferences>
     <repository type="rpm-md" alias="baseos" sourcetype="mirrorlist">
