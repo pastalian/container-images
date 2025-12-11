@@ -42,8 +42,7 @@ jobs:
       - name: Install KIWI
         run: |
           dnf -y install epel-release
-          # dnf -y install kiwi kiwi-systemdeps-containers
-          dnf -y install https://kojipkgs.fedoraproject.org//packages/kiwi/10.2.19/1.el9/noarch/kiwi-cli-10.2.19-1.el9.noarch.rpm https://kojipkgs.fedoraproject.org//packages/kiwi/10.2.19/1.el9/noarch/python3-kiwi-10.2.19-1.el9.noarch.rpm https://kojipkgs.fedoraproject.org//packages/kiwi/10.2.19/1.el9/x86_64/kiwi-systemdeps-core-10.2.19-1.el9.x86_64.rpm https://kojipkgs.fedoraproject.org//packages/kiwi/10.2.19/1.el9/x86_64/kiwi-systemdeps-containers-10.2.19-1.el9.x86_64.rpm
+          dnf -y install kiwi kiwi-systemdeps-containers
 
       - uses: actions/checkout@v4
 
@@ -71,8 +70,7 @@ jobs:
       - name: Install KIWI
         run: |
           dnf -y install epel-release
-          # dnf -y install kiwi kiwi-systemdeps-containers
-          dnf -y install https://kojipkgs.fedoraproject.org//packages/kiwi/10.2.19/1.el9/noarch/kiwi-cli-10.2.19-1.el9.noarch.rpm https://kojipkgs.fedoraproject.org//packages/kiwi/10.2.19/1.el9/noarch/python3-kiwi-10.2.19-1.el9.noarch.rpm https://kojipkgs.fedoraproject.org//packages/kiwi/10.2.19/1.el9/x86_64/kiwi-systemdeps-core-10.2.19-1.el9.x86_64.rpm https://kojipkgs.fedoraproject.org//packages/kiwi/10.2.19/1.el9/x86_64/kiwi-systemdeps-containers-10.2.19-1.el9.x86_64.rpm
+          dnf -y install kiwi kiwi-systemdeps-containers
 
       - uses: actions/checkout@v4
 
